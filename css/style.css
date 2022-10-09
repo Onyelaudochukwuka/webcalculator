@@ -512,7 +512,7 @@ form {
   transform: translateX(0);
   display: flex;
   flex-direction: column;
-  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in;
   transform-origin: right;
   z-index: 2;
 }

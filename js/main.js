@@ -9,7 +9,6 @@ let value = '',
 window.addEventListener('load', () => {
     document.forms.display.value = result;
 })
-const one = document.getElementById('one');
 const historyDetails = document.getElementById('historyDetails');
 const historyContent = document.getElementById('historyContent');
 const label = document.getElementById("label");
@@ -22,79 +21,23 @@ const addDetails = (value) => {
 if (!!historyArr[0]) {
     historyArr.forEach((item) => addDetails(item));
 }
-one.addEventListener('click', (event) => {
-    value += 1;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
+const numberBtns = document.querySelectorAll(".numberBtn");
+numberBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        value += btn.value;
+        result = value.includes('*') ? asetricParser(value) : value;
+        document.forms.display.value = result;
+    })
 })
-const two = document.getElementById('two');
-two.addEventListener('click', (event) => {
-    value += 2;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const three = document.getElementById('three');
-three.addEventListener('click', (event) => {
-    value += 3;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const four = document.getElementById('four');
-four.addEventListener('click', (event) => {
-    value += 4;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const five = document.getElementById('five');
-five.addEventListener('click', (event) => {
-    value += 5;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const six = document.getElementById('six');
-six.addEventListener('click', (event) => {
-    value += 6;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const seven = document.getElementById('seven');
-seven.addEventListener('click', (event) => {
-    value += 7;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const eight = document.getElementById('eight');
-eight.addEventListener('click', (event) => {
-    value += 8;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const nine = document.getElementById('nine');
-nine.addEventListener('click', (event) => {
-    value += 9;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const zero = document.getElementById('zero');
-zero.addEventListener('click', (event) => {
-    value += 0;
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const dot = document.getElementById('dot');
-dot.addEventListener('click', (event) => {
-    if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
-    value += '.';
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const slash = document.getElementById('divide');
-slash.addEventListener('click', (event) => {
-    if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
-    value += '/';
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
+const operatorBtns = document.querySelectorAll(".operatorBtn");
+operatorBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
+        value += btn.value.replace('×', '*');
+        result = value.includes('*') ? asetricParser(value) : value;
+        document.forms.display.value = result;
+    })
+});
 const reset = document.getElementById('reset');
 reset.addEventListener('click', (event) => {
     value = '';
@@ -103,43 +46,19 @@ reset.addEventListener('click', (event) => {
 })
 const del = document.getElementById('del');
 del.addEventListener('click', (event) => {
-    value = value.substring(0, value.length - 2);
+    value = value.substring(0, value.length - 1); 
     result = value.includes('*') ? asetricParser(value) : value;
     document.forms.display.value = result;
 })
-const plus = document.getElementById('plus');
-plus.addEventListener('click', (event) => {
-    if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
-    value += "+";
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-    document.getElementById("second").setAttribute("data-prev", prev);
-    
-})
-const times = document.getElementById('times');
-times.addEventListener('click', (event) => {
-    if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
-    value += "*";
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-const minus = document.getElementById('minus');
-minus.addEventListener('click', (event) => {
-    if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
-    value += "-";
-    result = value.includes('*') ? asetricParser(value) : value;
-    document.forms.display.value = result;
-})
-
 const equal = document.getElementById('equal');
 equal.addEventListener('click', (event) => {
     if (value[value.length - 1] === '+' || value[value.length - 1] === '-' || value[value.length - 1] === '*' || value[value.length - 1] === '/' || value[value.length - 1] === '.' || value[value.length - 1] === '') return;
     if (value === prev) return
     historyArr = [...historyArr, value];
-    label.setAttribute("data-prev", historyArr[historyArr.length - 1])
-    value = value !== prev ? eval(value) : value;
+    label.setAttribute("data-prev", historyArr[historyArr.length - 1].includes('*') ? asetricParser(historyArr[historyArr.length - 1]) : historyArr[historyArr.length - 1]);
+    value = value !== prev ? String(eval(value)) : value;
     prev = value;
-    result = String(value);
+    result = value;
     document.forms.display.value = result;
     historyArr.forEach((item) => addDetails(item));
     window.localStorage.setItem("history", JSON.stringify(historyArr));
@@ -380,29 +299,16 @@ const labelToggle3 = (DomElement) => {
     Element.classList.add('label3');
 }
 const footer = document.getElementById('footer');
-const theme1 = document.getElementById('a');
-const theme2 = document.getElementById('b');
-const theme3 = document.getElementById('c');
+const theme1 = document.getElementById('theme1');
+const theme2 = document.getElementById('theme2');
+const theme3 = document.getElementById('theme3');
 const float = document.getElementById('float');
 const svgIcon = document.querySelectorAll('.icons');
 const svg = document.getElementById('svg');
 theme1.addEventListener('click', (event) => {
     classChanger1(document.body);
-    buttonChanger1(one);
-    buttonChanger1(two);
-    buttonChanger1(three);
-    buttonChanger1(four);
-    buttonChanger1(five);
-    buttonChanger1(six);
-    buttonChanger1(seven);
-    buttonChanger1(eight);
-    buttonChanger1(nine);
-    buttonChanger1(zero);
-    buttonChanger1(dot);
-    buttonChanger1(slash);
-    buttonChanger1(minus);
-    buttonChanger1(plus);
-    buttonChanger1(times);
+    numberBtns.forEach((btn) => buttonChanger1(btn));
+    operatorBtns.forEach((btn) => buttonChanger1(btn));
     topChanger1(first);
     screenChanger1(second);
     keyBackgroundChanger1(historyDetails);
@@ -419,21 +325,8 @@ theme1.addEventListener('click', (event) => {
 })
 theme2.addEventListener('click', (event) => {
     classChanger2(document.body);
-    buttonChanger2(one);
-    buttonChanger2(two);
-    buttonChanger2(three);
-    buttonChanger2(four);
-    buttonChanger2(five);
-    buttonChanger2(six);
-    buttonChanger2(seven);
-    buttonChanger2(eight);
-    buttonChanger2(nine);
-    buttonChanger2(zero);
-    buttonChanger2(dot);
-    buttonChanger2(slash);
-    buttonChanger2(minus);
-    buttonChanger2(plus);
-    buttonChanger2(times);
+    numberBtns.forEach((btn) => buttonChanger2(btn));
+    operatorBtns.forEach((btn) => buttonChanger2(btn));
     topChanger2(first);
     screenChanger2(second);
     keyBackgroundChanger2(historyDetails);
@@ -450,21 +343,8 @@ theme2.addEventListener('click', (event) => {
 })
 theme3.addEventListener('click', (event) => {
     classChanger3(document.body);
-    buttonChanger3(one);
-    buttonChanger3(two);
-    buttonChanger3(three);
-    buttonChanger3(four);
-    buttonChanger3(five);
-    buttonChanger3(six);
-    buttonChanger3(seven);
-    buttonChanger3(eight);
-    buttonChanger3(nine);
-    buttonChanger3(zero);
-    buttonChanger3(dot);
-    buttonChanger3(slash);
-    buttonChanger3(minus);
-    buttonChanger3(plus);
-    buttonChanger3(times);
+    numberBtns.forEach((btn) => buttonChanger3(btn));
+    operatorBtns.forEach((btn) => buttonChanger3(btn));
     topChanger3(first);
     screenChanger3(second);
     keyBackgroundChanger3(historyDetails);
